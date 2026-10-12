@@ -1,0 +1,69 @@
+/* ABOUT CARDS */
+
+.about-boxes{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+margin-top:30px;
+}
+
+.about-card{
+background:#f9f9f9;
+border-radius:12px;
+overflow:hidden;
+box-shadow:0 5px 15px rgba(0,0,0,0.08);
+transition:0.3s;
+border-top:4px solid #ffcc00;
+}
+
+.about-card:hover{
+transform:translateY(-5px);
+}
+
+.about-btn{
+width:100%;
+padding:18px;
+background:#fff;
+border:none;
+font-size:17px;
+font-weight:bold;
+display:flex;
+justify-content:space-between;
+align-items:center;
+cursor:pointer;
+color:#111;
+}
+
+.about-btn span{
+font-size:24px;
+color:#ffcc00;
+transition:0.3s;
+}
+
+.about-content{
+max-height:0;
+overflow:hidden;
+padding:0 18px;
+transition:max-height 0.4s ease,padding 0.3s ease;
+background:#fff;
+}
+
+.about-content p,
+.about-content li{
+line-height:1.7;
+color:#444;
+}
+
+.about-content ul{
+padding-left:20px;
+padding-bottom:15px;
+}
+
+.about-card.active .about-content{
+max-height:300px;
+padding:15px 18px;
+}
+
+.about-card.active .about-btn span{
+transform:rotate(45deg);
+}
