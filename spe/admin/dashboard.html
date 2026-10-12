@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SPE UoD | Admin Dashboard</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+
+background:#eef3f8;
+
+display:flex;
+
+min-height:100vh;
+
+overflow-x:hidden;
+
+}
+
+/* ===========================
+SIDEBAR
+=========================== */
+
+.sidebar{
+
+width:270px;
+
+background:#082b63;
+
+color:white;
+
+position:fixed;
+
+left:0;
+
+top:0;
+
+bottom:0;
+
+display:flex;
+
+flex-direction:column;
+
+box-shadow:8px 0 30px rgba(0,0,0,.15);
+
+}
+
+.logo{
+
+padding:35px 20px;
+
+text-align:center;
+
+border-bottom:1px solid rgba(255,255,255,.15);
+
+}
+
+.logo img{
+
+width:90px;
+
+height:90px;
+
+object-fit:contain;
+
+margin-bottom:15px;
+
+}
+
+.logo h2{
+
+font-size:25px;
+
+}
+
+.logo p{
+
+margin-top:8px;
+
+color:#cdd8ea;
+
+font-size:14px;
+
+}
+
+.menu{
+
+margin-top:25px;
+
+flex:1;
+
+}
+
+.menu a{
+
+display:flex;
+
+align-items:center;
+
+gap:14px;
+
+padding:17px 28px;
+
+color:white;
+
+text-decoration:none;
+
+transition:.3s;
+
+font-size:16px;
+
+}
+
+.menu a i{
+
+width:25px;
+
+text-align:center;
+
+}
+
+.menu a:hover{
+
+background:#0f3d86;
+
+padding-left:38px;
+
+}
+
+.menu .active{
+
+background:#f4b400;
+
+color:#082b63;
+
+font-weight:bold;
+
+}
+
+.logout{
+
+margin:25px;
+
+padding:15px;
+
+border:none;
+
+border-radius:12px;
+
+background:#f4b400;
+
+color:#082b63;
+
+font-size:16px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.logout:hover{
+
+transform:translateY(-3px);
+
+}
+
+/* ===========================
+MAIN
+=========================== */
+
+.main{
+
+margin-left:270px;
+
+width:calc(100% - 270px);
+
+padding:35px;
+
+}
+
+.topbar{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:35px;
+
+}
+
+.title h1{
+
+color:#082b63;
+
+font-size:34px;
+
+}
+
+.title p{
+
+margin-top:8px;
+
+color:#666;
+
+}
+
+.admin{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+background:white;
+
+padding:10px 18px;
+
+border-radius:50px;
+
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+.admin i{
+
+font-size:26px;
+
+color:#082b63;
+
+}
+
+/* ===========================
+CARDS
+=========================== */
+
+.cards{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+
+gap:25px;
+
+margin-bottom:40px;
+
+}
+
+.card{
+
+background:white;
+
+border-radius:20px;
+
+padding:30px;
+
+box-shadow:0 12px 30px rgba(0,0,0,.08);
+
+transition:.3s;
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.card:hover{
+
+transform:translateY(-8px);
+
+}
+
+.card i{
+
+font-size:42px;
+
+color:#f4b400;
+
+margin-bottom:20px;
+
+}
+
+.card h2{
+
+font-size:42px;
+
+color:#082b63;
+
+}
+
+.card p{
+
+margin-top:10px;
+
+color:#666;
+
+}
+
+/* ===========================
+QUICK ACTIONS
+=========================== */
+
+.actions{
+
+background:white;
+
+padding:30px;
+
+border-radius:20px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+margin-bottom:35px;
+
+}
+
+.actions h2{
+
+color:#082b63;
+
+margin-bottom:25px;
+
+}
+
+.action-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+
+gap:20px;
+
+}
+
+.action-grid button{
+
+padding:18px;
+
+border:none;
+
+border-radius:14px;
+
+background:#082b63;
+
+color:white;
+
+font-size:16px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.action-grid button:hover{
+
+background:#f4b400;
+
+color:#082b63;
+
+}
+
+.action-grid button i{
+
+margin-right:10px;
+
+}
+
+/* ===========================
+TABLE
+=========================== */
+
+.table-box{
+
+background:white;
+
+padding:30px;
+
+border-radius:20px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.table-box h2{
+
+color:#082b63;
+
+margin-bottom:25px;
+
+}
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+}
+
+th{
+
+background:#082b63;
+
+color:white;
+
+padding:15px;
+
+text-align:left;
+
+}
+
+td{
+
+padding:16px;
+
+border-bottom:1px solid #eee;
+
+}
+
+.status{
+
+padding:6px 15px;
+
+border-radius:30px;
+
+font-size:13px;
+
+font-weight:bold;
+
+}
+
+.done{
+
+background:#d4edda;
+
+color:#1b7b39;
+
+}
+
+.pending{
+
+background:#fff4cc;
+
+color:#b8860b;
+
+}
+
+@media(max-width:900px){
+
+.sidebar{
+
+width:90px;
+
+}
+
+.logo h2,
+.logo p,
+.menu a span{
+
+display:none;
+
+}
+
+.main{
+
+margin-left:90px;
+
+width:calc(100% - 90px);
+
+}
+
+.menu a{
+
+justify-content:center;
+
+padding:20px;
+
+}
+
+}
+
+.sidebar{
+    z-index:9999 !important;
+}
+
+.main{
+    position:relative;
+    z-index:1;
+}
+
+
+
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<div class="logo">
+
+<img src="../spe.jpg.png">
+
+<h2>SPE UoD</h2>
+
+<p>Student Chapter</p>
+
+</div>
+
+<div class="menu">
+
+<a class="active" href="dashboard.html">
+    <i class="fa-solid fa-house"></i>
+    <span>Dashboard</span>
+</a>
+
+
+
+</div>
+
+<button class="logout" id="logout">
+<i class="fa-solid fa-right-from-bracket"></i>
+ Logout
+</button>
+
+</div>
+
+<div class="main">
+
+<div class="topbar">
+
+<div class="title">
+
+<h1>Admin Dashboard</h1>
+
+<p>Welcome back, Administrator.</p>
+
+</div>
+
+<div class="admin">
+
+<i class="fa-solid fa-user-shield"></i>
+
+<strong>Admin</strong>
+
+</div>
+
+</div>
+
+<div class="cards">
+
+<div class="card">
+
+<i class="fa-solid fa-users"></i>
+
+<h2 id="officerscount">0</h2>
+
+<p>Officers</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-calendar-days"></i>
+
+<h2 id="eventsCount">0</h2>
+
+<p>Events</p>
+
+</div>
+
+
+
+<div class="card">
+
+<i class="fa-solid fa-bullhorn"></i>
+
+<h2 id="newsCount">4</h2>
+
+<p>Announcements</p>
+
+</div>
+
+</div>
+
+<!-- QUICK ACTIONS -->
+
+<div class="actions">
+
+<h2>Quick Actions</h2>
+
+<div class="action-grid">
+
+<button id="addOfficer" onclick="window.location.href='officers.html'">
+    <i class="fa-solid fa-user-plus"></i>
+    Add Officer
+</button>
+
+<button id="addEvent" onclick="window.location.href='events.html'">
+<i class="fa-solid fa-calendar-plus"></i>
+Add Event
+</button>
+
+
+
+<button onclick="window.location.href='announcements.html'">
+<i class="fa-solid fa-bullhorn"></i>
+Announcement
+</button>
+
+</div>
+
+</div>
+
+<!-- RECENT OFFICERS -->
+
+<div class="table-box">
+
+<h2>Chapter Officers</h2>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Name</th>
+
+<th>Position</th>
+
+<th>Status</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="officerTable">
+
+
+
+</tbody>
+
+</table>
+
+</div>
+
+<br><br>
+
+<!-- EVENTS -->
+
+<div class="table-box">
+
+<h2>Upcoming Events</h2>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Event</th>
+
+<th>Date</th>
+
+<th>Location</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="eventTable">
+
+<tr>
+
+<td>Technical Workshop</td>
+
+<td>15 July 2026</td>
+
+<td>University of Duhok</td>
+
+<td>
+
+<button>Edit</button>
+
+<button>Delete</button>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<br><br>
+
+<!-- WEBSITE INFO -->
+
+<div class="table-box">
+
+<h2>Website Information</h2>
+
+<table>
+
+<tr>
+
+<td>Website Status</td>
+
+<td><span class="status done">Online</span></td>
+
+</tr>
+
+<tr>
+
+<td>Firebase</td>
+
+<td><span class="status done">Connected</span></td>
+
+</tr>
+
+<tr>
+
+<td>Storage</td>
+
+<td><span class="status pending">Ready</span></td>
+
+</tr>
+
+<tr>
+
+<td>Authentication</td>
+
+<td><span class="status done">Enabled</span></td>
+
+</tr>
+
+</table>
+
+</div>
+
+<br><br>
+
+<!-- RECENT ACTIVITY -->
+
+<div class="table-box">
+
+<h2>Recent Activity</h2>
+
+<table>
+
+<tr>
+
+<th>Activity</th>
+
+<th>Date</th>
+
+</tr>
+
+<tr>
+
+<td>Officer Added</td>
+
+<td>Today</td>
+
+</tr>
+
+<tr>
+
+<td>Gallery Updated</td>
+
+<td>Yesterday</td>
+
+</tr>
+
+<tr>
+
+<td>Event Published</td>
+
+<td>2 Days Ago</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+<script type="module">
+
+import { auth, db } from "./firebase.js";
+
+import {
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+import {
+    collection,
+    getDocs,
+    deleteDoc,
+    doc,
+    updateDoc
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+// Check login
+onAuthStateChanged(auth, (user) => {
+
+    if (!user) {
+        window.location.href = "login.html";
+    }
+
+});
+
+// Officer Count
+async function loadOfficerCount() {
+
+    const snapshot = await getDocs(collection(db, "officers"));
+
+    console.log(snapshot.size);
+
+    document.getElementById("officerscount").innerHTML = snapshot.size;
+
+}
+
+// Officers Table
+async function loadOfficers() {
+
+    const officerTable = document.getElementById("officerTable");
+
+    officerTable.innerHTML = "";
+
+    const snapshot = await getDocs(collection(db, "officers"));
+    console.log(snapshot.docs);
+
+    snapshot.forEach((document) => {
+
+        const officer = document.data();
+
+        officerTable.innerHTML += `
+        <tr>
+            <td>
+    <img src="${officer.photoURL}" 
+         style="width:50px;height:50px;border-radius:50%;object-fit:cover;margin-right:10px;vertical-align:middle;">
+    ${officer.name}
+</td>
+            <td>${officer.position}</td>
+            <td><span class="status done">Active</span></td>
+           <td>
+
+<button class="editBtn"
+data-id="${document.id}"
+data-name="${officer.name}"
+data-position="${officer.position}">
+Edit</button>
+
+<button class="deleteBtn"
+data-id="${document.id}">
+Delete</button>
+
+</td>
+        </tr>
+        `;
+
+    });
+
+}
+
+// Delete Officer
+document.addEventListener("click", async (e) => {
+
+    if (e.target.classList.contains("deleteBtn")) {
+
+        if (!confirm("Delete this officer?")) return;
+
+        const id = e.target.dataset.id;
+
+        await deleteDoc(doc(db, "officers", id));
+
+        loadOfficerCount();
+        loadOfficers();
+
+    }
+
+});
+document.addEventListener("click", async (e) => {
+
+    if (e.target.classList.contains("deleteEventBtn")) {
+
+        if (!confirm("Delete this event?")) return;
+
+        await deleteDoc(doc(db, "events", e.target.dataset.id));
+
+        alert("✅ Event deleted successfully!");
+
+        loadEventCount();
+        loadEvents();
+
+    }
+
+});
+
+document.addEventListener("click", async (e) => {
+
+    if (e.target.classList.contains("editEventBtn")) {
+
+        const id = e.target.dataset.id;
+
+        const title = prompt("Event Title:", e.target.dataset.title);
+        if (title === null) return;
+
+        const date = prompt("Event Date:", e.target.dataset.date);
+        if (date === null) return;
+
+        const image = prompt("Image Name:", e.target.dataset.image);
+        if (image === null) return;
+
+        const description = prompt("Description:", e.target.dataset.description);
+        if (description === null) return;
+
+        await updateDoc(doc(db, "events", id), {
+
+            title,
+            date,
+            image,
+            description
+
+        });
+
+        alert("✅ Event updated successfully!");
+
+        loadEvents();
+
+    }
+
+});
+
+document.addEventListener("click", async (e) => {
+
+    if (e.target.classList.contains("editBtn")) {
+
+        const id = e.target.dataset.id;
+
+        const currentName = e.target.dataset.name;
+
+        const currentPosition = e.target.dataset.position;
+
+        const newName = prompt("Officer Name:", currentName);
+
+        if (newName === null) return;
+
+        const newPosition = prompt("Position:", currentPosition);
+
+        if (newPosition === null) return;
+
+        await updateDoc(doc(db, "officers", id), {
+            name: newName,
+            position: newPosition
+        });
+
+        loadOfficers();
+
+    }
+
+});
+
+// Run
+// Run
+loadOfficerCount();
+loadOfficers();
+
+loadEventCount();
+async function loadEvents() {
+
+    const eventTable = document.getElementById("eventTable");
+
+    eventTable.innerHTML = "";
+
+    const snapshot = await getDocs(collection(db, "events"));
+
+    snapshot.forEach((document) => {
+
+        const event = document.data();
+
+        eventTable.innerHTML += `
+        <tr>
+            <td>${event.title}</td>
+            <td>${event.date}</td>
+            <td>University of Duhok</td>
+           <td>
+
+<button class="editEventBtn"
+data-id="${document.id}"
+data-title="${event.title}"
+data-date="${event.date}"
+data-image="${event.image}"
+data-description="${event.description}">
+Edit
+</button>
+
+<button class="deleteEventBtn"
+data-id="${document.id}">
+Delete
+</button>
+
+</td>
+        </tr>
+        `;
+
+    });
+
+}
+loadEvents();
+async function loadEventCount() {
+
+    const snapshot = await getDocs(collection(db, "events"));
+
+    document.getElementById("eventsCount").innerHTML = snapshot.size;
+
+}
+
+loadAnnouncementCount();
+
+// Logout
+document.getElementById("logout").onclick = () => {
+
+    signOut(auth).then(() => {
+
+        window.location.href = "login.html";
+
+    });
+
+};
+
+async function loadAnnouncementCount() {
+
+    const snapshot = await getDocs(collection(db, "announcements"));
+
+    document.getElementById("newsCount").innerHTML = snapshot.size;
+
+}
+
+</script>
+
+</body>
+
+</html>

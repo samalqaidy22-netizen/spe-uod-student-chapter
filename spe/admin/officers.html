@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manage Officers</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f5f7fb;
+}
+
+header{
+    background:#003B7A;
+    color:white;
+    padding:20px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+header a{
+    color:white;
+    text-decoration:none;
+}
+
+.container{
+    max-width:1100px;
+    margin:40px auto;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+h2{
+    color:#003B7A;
+}
+
+form{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+    margin-top:20px;
+}
+
+input{
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+button{
+    background:#FDB913;
+    border:none;
+    padding:14px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+button:hover{
+    background:#e8a900;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:35px;
+}
+
+th{
+    background:#003B7A;
+    color:white;
+    padding:15px;
+}
+
+td{
+    padding:15px;
+    border-bottom:1px solid #ddd;
+}
+
+.action-btn{
+    background:#003B7A;
+    color:white;
+    padding:8px 12px;
+    border-radius:6px;
+    margin-right:5px;
+    cursor:pointer;
+}
+
+.delete{
+    background:#d9534f;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h2>SPE Officers</h2>
+
+<a href="dashboard.html">
+<i class="fa-solid fa-arrow-left"></i>
+ Dashboard
+</a>
+
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Add Officer</h2>
+
+<form id="officerForm">
+
+<input
+id="name"
+placeholder="Officer Name"
+required>
+
+<input
+id="position"
+placeholder="Position"
+required>
+
+<input type="file" id="photo" accept="image/*">
+<button type="submit">
+
+Add Officer
+
+</button>
+
+</form>
+
+</div>
+
+<div class="card" style="margin-top:30px;">
+
+<h2>Current Officers</h2>
+
+<table>
+
+
+
+<thead>
+
+<tr>
+
+<th>Name</th>
+
+<th>Position</th>
+
+<th>Actions</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="officerList">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+<script type="module" src="officers.js"></script>
+</body>
+</html>
