@@ -1,4 +1,4 @@
-import { db } from "./admin/firebase.js";
+import { db } from "./admin/spe/firebase.js";
 
 import {
     collection,
